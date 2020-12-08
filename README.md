@@ -88,8 +88,27 @@
  * wget -c file – continue a stopped download
 
 ## Installation:
- * dpkg -i pkg.deb – install a package (Debian)
- * rpm -Uvh pkg.rpm – install a package (RPM)
+ 
+### Debian
+
+    dpkg -i pkg.deb
+
+### RPM
+
+    rpm -Uvh pkg.rpm
+
+#### CentOS
+
+    yum install pkg
+
+#### Ubuntu
+    apt update
+    apt upgrade
+    apt install pkg
+
+### Node.js, Javascript package manager
+
+    npm install
 
 ## Install from source:
  * ./configure
@@ -106,3 +125,36 @@
  * Ctrl+R – type to bring up a recent command
  * !! - repeats the last command
  * exit – log out of current session
+
+## Port and socket
+
+### CentOS older
+
+`netstat`  - Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+
+`-a, --all` Show  both  listening  and  non-listening (for TCP this means established connections) sockets.  With the --interfaces option, show interfaces that are not up
+
+`--numeric , -n` Show numerical addresses instead of trying to determine symbolic host, port or user names.
+
+`-p, --program` Show the PID and name of the program to which each socket belongs.
+
+    netstat -anp | grep :8
+https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s1-server-ports.html
+
+### CentOS 7 netstat, which is part of the package net-tools has been officially
+**deprecated**, so you should be using `ss` (part of the package `iproute2`),
+going forward.
+
+    ss -anp | grep :8443
+
+https://unix.stackexchange.com/a/385500/36816
+
+    ss -lnpt 'sport = :3000'
+
+`-l, --listening` Display only listening sockets (omitted by default).
+
+`-n, --numeric` Do not try to resolve service names.
+
+`-p, --processes` Show process using socket.
+
+`-t, --tcp` Display TCP sockets.
