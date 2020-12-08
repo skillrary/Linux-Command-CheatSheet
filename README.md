@@ -97,11 +97,11 @@
 
     rpm -Uvh pkg.rpm
 
-#### CentOS
+### CentOS
 
     yum install pkg
 
-#### Ubuntu
+### Ubuntu
     apt update
     apt upgrade
     apt install pkg
